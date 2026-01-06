@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURADUST | Marketplace</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>AURADUST | Beauty Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -13,54 +13,57 @@
 
         body { font-family: 'Montserrat', sans-serif; margin: 0; background: var(--beige); color: var(--texto); scroll-behavior: smooth; overflow-x: hidden; }
 
-        /* HEADER & CARRITO */
-        .header-tools { position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 15px; align-items: center; }
+        /* HEADER Y CARRITO */
+        .header-tools { position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px; }
+        #language-selector { padding: 8px; border-radius: 20px; border: 1px solid var(--dorado); background: white; cursor: pointer; }
         
-        #language-selector { padding: 10px; border-radius: 20px; border: 1px solid var(--dorado); cursor: pointer; background: white; }
-
         .cart-icon {
-            background: white; border: 1px solid var(--dorado); padding: 10px 20px; border-radius: 25px;
-            cursor: pointer; position: relative; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: white; border: 1px solid var(--dorado); padding: 10px 15px; border-radius: 25px;
+            cursor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: relative;
         }
-
         .cart-count { background: var(--dorado); color: white; border-radius: 50%; padding: 2px 7px; font-size: 0.7rem; position: absolute; top: -5px; right: -5px; }
 
         /* SIDEBAR CARRITO */
         .cart-sidebar {
-            position: fixed; top: 0; right: -400px; width: 350px; height: 100%;
+            position: fixed; top: 0; right: -100%; width: 350px; height: 100%;
             background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 2000;
             transition: 0.4s; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column;
         }
         .cart-sidebar.active { right: 0; }
-        .cart-items-list { flex-grow: 1; overflow-y: auto; margin-top: 20px; border-top: 1px solid #eee; }
+        .cart-items-list { flex-grow: 1; overflow-y: auto; margin-top: 20px; }
         .cart-item-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 0.9rem; }
 
-        /* HERO & CATEGORIAS */
-        .hero { height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(253,240,240,0.5), rgba(249,245,240,0.5)), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2000'); background-size: cover; background-position: center; }
-        .hero h1 { font-family: 'Playfair Display'; font-size: 4rem; letter-spacing: 10px; color: var(--dorado); margin: 0; }
+        /* HERO */
+        .hero { height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(253,240,240,0.4), rgba(249,245,240,0.4)), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2000'); background-size: cover; background-position: center; }
+        .hero h1 { font-family: 'Playfair Display'; font-size: clamp(3rem, 8vw, 5rem); letter-spacing: 12px; color: var(--dorado); margin: 0; }
 
-        .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px; }
-        .category-item { height: 250px; background-size: cover; background-position: center; border-radius: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; transition: 0.3s; }
+        /* CATEGORIAS PRINCIPALES */
+        .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px; }
+        .category-item { height: 200px; background-size: cover; background-position: center; border-radius: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; transition: 0.3s; }
         .category-item:hover { transform: scale(1.03); }
-        .category-item span { border: 2px solid white; padding: 10px 20px; text-transform: uppercase; background: rgba(0,0,0,0.2); font-weight: bold; }
+        .category-item span { border: 1px solid white; padding: 10px 20px; text-transform: uppercase; background: rgba(0,0,0,0.3); font-weight: bold; letter-spacing: 2px; }
 
-        /* PRODUCTOS (Añadibles al carrito) */
-        .sub-section { padding: 60px 20px; text-align: center; background: white; }
-        .grid-productos { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; max-width: 1000px; margin: 0 auto; }
+        /* SECCIONES DE PRODUCTOS */
+        .sub-section { padding: 60px 20px; text-align: center; border-bottom: 1px solid var(--rosa); background: white; }
+        .grid-productos { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; max-width: 1100px; margin: 30px auto; }
         .producto-item { 
             padding: 20px 10px; background: var(--rosa); border-radius: 12px; font-size: 0.75rem; 
             text-transform: uppercase; cursor: pointer; transition: 0.3s; border: 1px solid transparent;
         }
         .producto-item:hover { background: white; border-color: var(--dorado); transform: translateY(-3px); }
-        .producto-item::after { content: ' +'; color: var(--dorado); font-weight: bold; }
 
-        /* FORMULARIOS */
-        .auth-section { padding: 60px 20px; max-width: 600px; margin: 0 auto; }
-        .form-container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        .btn-main { width: 100%; padding: 15px; background: var(--dorado); color: white; border: none; border-radius: 30px; cursor: pointer; font-weight: bold; text-transform: uppercase; margin-top: 10px; }
+        /* FORMULARIOS REGISTRO */
+        .auth-section { padding: 80px 20px; max-width: 800px; margin: 0 auto; }
+        .auth-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+        .tab-btn { padding: 12px 25px; border: 2px solid var(--dorado); background: none; color: var(--dorado); border-radius: 25px; cursor: pointer; font-weight: bold; }
+        .tab-btn.active { background: var(--dorado); color: white; }
+        .form-container { background: white; padding: 35px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: none; }
+        .form-container.active { display: block; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn-main { width: 100%; padding: 15px; background: var(--dorado); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; text-transform: uppercase; margin-top: 15px; }
 
-        .btn-kofi { position: fixed; bottom: 20px; left: 20px; background: var(--kofi); color: white; padding: 12px 20px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
+        .btn-kofi { position: fixed; bottom: 20px; left: 20px; background: var(--kofi); color: white; padding: 12px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; z-index: 1000; }
+        footer { text-align: center; padding: 50px; font-size: 0.8rem; color: var(--dorado); }
     </style>
 </head>
 <body>
@@ -70,135 +73,125 @@
             <option value="es">ES 🇪🇸</option>
             <option value="en">EN 🇺🇸</option>
         </select>
-        <div class="cart-icon" onclick="toggleCart()">
-            🛒 <span data-key="cart_title">Carrito</span>
-            <span class="cart-count" id="cart-count">0</span>
-        </div>
+        <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
     </div>
 
     <div class="cart-sidebar" id="cart-sidebar">
         <h2 data-key="cart_title">Tu Carrito</h2>
-        <div class="cart-items-list" id="cart-items-list">
-            </div>
-        <div style="margin-top: 20px; font-weight: bold; border-top: 2px solid var(--dorado); padding-top: 10px;">
+        <div class="cart-items-list" id="cart-items-list"></div>
+        <div style="margin: 20px 0; font-weight: bold; border-top: 2px solid var(--dorado); padding-top: 10px;">
             Total: $<span id="cart-total">0</span>
         </div>
-        <button class="btn-main" onclick="goToOrder()" data-key="btn_order">Hacer Pedido</button>
-        <button class="btn-main" style="background:#555; margin-top:5px;" onclick="toggleCart()" data-key="btn_close">Cerrar</button>
+        <button class="btn-main" onclick="goToOrder()" data-key="btn_order">Completar Pedido</button>
+        <button class="btn-main" style="background:#888" onclick="toggleCart()">Cerrar</button>
     </div>
 
     <a href="https://ko-fi.com/victoriastar27" target="_blank" class="btn-kofi">☕ Ko-fi</a>
 
     <section class="hero">
         <h1>AURADUST</h1>
-        <p data-key="hero_subtitle">Beauty Marketplace</p>
+        <p data-key="hero_subtitle">Premium Beauty Marketplace</p>
     </section>
 
     <div class="categories">
-        <a href="#seccion-maquillaje" class="category-item" style="background-image: url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600')">
-            <span data-key="cat_makeup">Maquillaje</span>
-        </a>
-        <a href="#seccion-cremas" class="category-item" style="background-image: url('https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?q=80&w=600')">
-            <span data-key="cat_skincare">Cremas</span>
-        </a>
-        <a href="#seccion-perfumes" class="category-item" style="background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=600')">
-            <span data-key="cat_perfume">Perfumes</span>
-        </a>
+        <a href="#seccion-maquillaje" class="category-item" style="background-image: url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600')"><span data-key="cat_makeup">Maquillaje</span></a>
+        <a href="#seccion-cremas" class="category-item" style="background-image: url('https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?q=80&w=600')"><span data-key="cat_skincare">Cremas</span></a>
+        <a href="#seccion-perfumes" class="category-item" style="background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=600')"><span data-key="cat_perfume">Perfumes</span></a>
     </div>
 
     <section id="seccion-maquillaje" class="sub-section">
         <h2 data-key="cat_makeup">Maquillaje</h2>
-        <p style="font-size: 0.8rem; color: #888;">Haz clic en un producto para añadir al carrito</p>
         <div class="grid-productos">
             <div class="producto-item" onclick="addToCart('Blush', 15)">Blush</div>
+            <div class="producto-item" onclick="addToCart('Bronzer', 18)">Bronzer & Contour</div>
             <div class="producto-item" onclick="addToCart('Highlighter', 20)">Highlighter</div>
+            <div class="producto-item" onclick="addToCart('Eye-shadow', 22)">Eye-shadow</div>
             <div class="producto-item" onclick="addToCart('Lips', 12)">Lips</div>
-            <div class="producto-item" onclick="addToCart('Foundation', 25)">Foundation</div>
-            <div class="producto-item" onclick="addToCart('Mascara', 18)">Mascara</div>
+            <div class="producto-item" onclick="addToCart('Foundation', 30)">Foundation</div>
+            <div class="producto-item" onclick="addToCart('Primers', 25)">Primers</div>
+            <div class="producto-item" onclick="addToCart('Mascara', 15)">Mascara & Eyelashes</div>
+            <div class="producto-item" onclick="addToCart('Concealer', 18)">Concealer</div>
+            <div class="producto-item" onclick="addToCart('Brows', 14)">Brows</div>
+            <div class="producto-item" onclick="addToCart('Setting Powder', 20)">Setting Powder</div>
         </div>
     </section>
 
     <section id="seccion-cremas" class="sub-section">
         <h2 data-key="cat_skincare">Cremas</h2>
         <div class="grid-productos">
-            <div class="producto-item" onclick="addToCart('Serum', 30)">Serum</div>
-            <div class="producto-item" onclick="addToCart('Moisturiser', 22)">Moisturiser</div>
-            <div class="producto-item" onclick="addToCart('Sunscreen', 19)">Sunscreen</div>
+            <div class="producto-item" onclick="addToCart('Serum', 35)">Serums</div>
+            <div class="producto-item" onclick="addToCart('Tonic', 20)">Tonics</div>
+            <div class="producto-item" onclick="addToCart('Moisturiser', 25)">Moisturiser</div>
+            <div class="producto-item" onclick="addToCart('Mask', 15)">Masks</div>
+            <div class="producto-item" onclick="addToCart('Sunscreen', 22)">Sunscreens</div>
         </div>
     </section>
 
-    <section class="auth-section" id="registro-pedido">
-        <div class="form-container">
-            <h2 data-key="buyer_title">Datos para el Envío</h2>
+    <section id="seccion-perfumes" class="sub-section">
+        <h2 data-key="cat_perfume">Perfumes</h2>
+        <div class="grid-productos">
+            <div class="producto-item" onclick="addToCart('Perfume Hombre', 50)">Perfume para Hombre</div>
+            <div class="producto-item" onclick="addToCart('Perfume Mujer', 55)">Perfume para Mujer</div>
+            <div class="producto-item" onclick="addToCart('Perfume Niños', 30)">Perfume para Niños</div>
+        </div>
+    </section>
+
+    <section class="auth-section" id="registro">
+        <div class="auth-tabs">
+            <button class="tab-btn active" onclick="showForm('comprador')" data-key="tab_buyer">Comprador</button>
+            <button class="tab-btn" onclick="showForm('vendedor')" data-key="tab_seller">Vendedor</button>
+        </div>
+
+        <div id="form-comprador" class="form-container active">
+            <h2 data-key="buyer_title">Cuenta de Comprador</h2>
             <form action="https://formspree.io/f/TU_CODIGO_AQUI" method="POST">
-                <input type="hidden" name="Pedido" id="hidden-cart-input">
-                <label data-key="lbl_name">Nombre</label>
-                <input type="text" name="Nombre" required>
-                <label data-key="lbl_email">Email</label>
-                <input type="email" name="Email" required>
-                <label data-key="lbl_address">Dirección</label>
-                <input type="text" name="Direccion" required>
-                <label data-key="lbl_card">Tarjeta de Crédito</label>
-                <input type="text" name="Tarjeta" placeholder="0000 0000 0000 0000" required>
-                <button type="submit" class="btn-main" data-key="btn_register">Finalizar Compra</button>
+                <input type="hidden" name="Carrito" id="cart-data-input">
+                <input type="text" name="Nombre" placeholder="Nombre Completo" required>
+                <input type="tel" name="Telefono" placeholder="Teléfono" required>
+                <input type="email" name="Email" placeholder="Email" required>
+                <input type="text" name="Direccion" placeholder="Dirección de Envío" required>
+                <input type="text" name="Tarjeta" placeholder="Número de Tarjeta 0000 0000..." required>
+                <button type="submit" class="btn-main" data-key="btn_register">Registrarse y Pagar</button>
+            </form>
+        </div>
+
+        <div id="form-vendedor" class="form-container">
+            <h2 data-key="seller_title">Registro Vendedor</h2>
+            <form action="https://formspree.io/f/TU_CODIGO_AQUI" method="POST">
+                <input type="text" name="Marca" placeholder="Nombre de la Marca" required>
+                <input type="email" name="Email_Marca" placeholder="Email de contacto" required>
+                <button type="submit" class="btn-main" data-key="btn_send">Enviar Solicitud</button>
             </form>
         </div>
     </section>
 
+    <footer>AURADUST &copy; 2026 | <span data-key="footer_text">Donde la belleza florece.</span></footer>
+
     <script>
-        let cart = [];
-        let total = 0;
-
-        function toggleCart() {
-            document.getElementById('cart-sidebar').classList.toggle('active');
+        let cart = []; let total = 0;
+        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('active'); }
+        function showForm(tipo) {
+            document.querySelectorAll('.form-container').forEach(f => f.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('form-' + tipo).classList.add('active');
+            event.currentTarget.classList.add('active');
         }
-
         function addToCart(name, price) {
-            cart.push({name, price});
-            total += price;
-            updateCartUI();
-            // Abrir carrito brevemente para mostrar que se añadió
-            if(!document.getElementById('cart-sidebar').classList.contains('active')) {
-                toggleCart();
-                setTimeout(toggleCart, 1500);
-            }
-        }
-
-        function updateCartUI() {
+            cart.push({name, price}); total += price;
             const list = document.getElementById('cart-items-list');
-            const count = document.getElementById('cart-count');
-            const totalDisplay = document.getElementById('cart-total');
-            const hiddenInput = document.getElementById('hidden-cart-input');
-
-            list.innerHTML = '';
-            cart.forEach((item, index) => {
-                list.innerHTML += `<div class="cart-item-row"><span>${item.name}</span><span>$${item.price}</span></div>`;
-            });
-
-            count.innerText = cart.length;
-            totalDisplay.innerText = total;
-            hiddenInput.value = JSON.stringify(cart) + " TOTAL: $" + total;
-        }
-
-        function goToOrder() {
-            toggleCart();
-            location.href = "#registro-pedido";
-        }
-
-        // Traducciones básicas
-        const translations = {
-            es: { 
-                cart_title: "Carrito", hero_subtitle: "Mercado de Belleza", cat_makeup: "Maquillaje", 
-                cat_skincare: "Cremas", cat_perfume: "Perfumes", btn_order: "Hacer Pedido", 
-                btn_close: "Cerrar", buyer_title: "Datos de Pago", btn_register: "Finalizar Compra",
-                lbl_name: "Nombre Completo", lbl_email: "Email", lbl_address: "Dirección", lbl_card: "Tarjeta"
-            },
-            en: { 
-                cart_title: "Cart", hero_subtitle: "Beauty Marketplace", cat_makeup: "Makeup", 
-                cat_skincare: "Skincare", cat_perfume: "Perfumes", btn_order: "Checkout", 
-                btn_close: "Close", buyer_title: "Shipping Details", btn_register: "Finish Order",
-                lbl_name: "Full Name", lbl_email: "Email", lbl_address: "Address", lbl_card: "Card Number"
+            list.innerHTML += `<div class="cart-item-row"><span>${name}</span><span>$${price}</span></div>`;
+            document.getElementById('cart-count').innerText = cart.length;
+            document.getElementById('cart-total').innerText = total;
+            document.getElementById('cart-data-input').value = JSON.stringify(cart) + " TOTAL: $" + total;
+            if(!document.getElementById('cart-sidebar').classList.contains('active')) {
+                toggleCart(); setTimeout(toggleCart, 1000);
             }
+        }
+        function goToOrder() { toggleCart(); location.href = "#registro"; }
+
+        const translations = {
+            es: { hero_subtitle: "Mercado de Belleza Premium", cart_title: "Tu Carrito", cat_makeup: "Maquillaje", cat_skincare: "Cremas", cat_perfume: "Perfumes", tab_buyer: "Comprador", tab_seller: "Vendedor", buyer_title: "Cuenta de Comprador", seller_title: "Registro Vendedor", btn_order: "Completar Pedido", btn_register: "Registrarse y Pagar", btn_send: "Enviar Solicitud", footer_text: "Donde la belleza florece." },
+            en: { hero_subtitle: "Premium Beauty Marketplace", cart_title: "Your Cart", cat_makeup: "Makeup", cat_skincare: "Skincare", cat_perfume: "Perfumes", tab_buyer: "Buyer", tab_seller: "Seller", buyer_title: "Buyer Account", seller_title: "Seller Registration", btn_order: "Complete Order", btn_register: "Register and Pay", btn_send: "Send Request", footer_text: "Where beauty blooms." }
         };
 
         document.getElementById('language-selector').addEventListener('change', (e) => {
