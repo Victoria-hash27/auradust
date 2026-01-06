@@ -3,124 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURADUST | Beauty Marketplace</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <title>AURADUST | Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --rosa-pastel: #fdf0f0;
-            --rosa-fuerte: #f8bbd0;
-            --beige-acogedor: #f9f5f0;
-            --dorado: #c5a059;
-            --texto: #5a4a42;
+            --rosa: #fdf0f0; --dorado: #c5a059; --texto: #5a4a42; --kofi: #29abe0; --beige: #f9f5f0;
         }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0; padding: 0;
-            background-color: var(--beige-acogedor);
-            color: var(--texto);
-            scroll-behavior: smooth; /* Esto hace que el deslizamiento sea suave */
+        body { font-family: 'Montserrat', sans-serif; margin: 0; background: var(--beige); color: var(--texto); scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* HEADER & CARRITO */
+        .header-tools { position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 15px; align-items: center; }
+        
+        #language-selector { padding: 10px; border-radius: 20px; border: 1px solid var(--dorado); cursor: pointer; background: white; }
+
+        .cart-icon {
+            background: white; border: 1px solid var(--dorado); padding: 10px 20px; border-radius: 25px;
+            cursor: pointer; position: relative; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* Selector de Idiomas */
-        .lang-container {
-            position: fixed;
-            top: 20px; right: 20px;
-            z-index: 1000;
-        }
-        #language-selector {
-            padding: 10px 15px;
-            border-radius: 25px;
-            border: 1px solid var(--dorado);
-            background: white;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+        .cart-count { background: var(--dorado); color: white; border-radius: 50%; padding: 2px 7px; font-size: 0.7rem; position: absolute; top: -5px; right: -5px; }
 
-        /* Botón Donar Flotante */
-        .btn-donar-flotante {
-            position: fixed; bottom: 20px; right: 20px;
-            background-color: var(--dorado); color: white;
-            padding: 15px 25px; border-radius: 50px;
-            text-decoration: none; font-weight: bold; font-size: 0.8rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000;
-            transition: 0.3s;
+        /* SIDEBAR CARRITO */
+        .cart-sidebar {
+            position: fixed; top: 0; right: -400px; width: 350px; height: 100%;
+            background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 2000;
+            transition: 0.4s; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column;
         }
+        .cart-sidebar.active { right: 0; }
+        .cart-items-list { flex-grow: 1; overflow-y: auto; margin-top: 20px; border-top: 1px solid #eee; }
+        .cart-item-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 0.9rem; }
 
-        /* Hero */
-        .hero {
-            height: 100vh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(253, 240, 240, 0.6), rgba(249, 245, 240, 0.6)), 
-                        url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2000');
-            background-size: cover; background-position: center;
-        }
+        /* HERO & CATEGORIAS */
+        .hero { height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(253,240,240,0.5), rgba(249,245,240,0.5)), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2000'); background-size: cover; background-position: center; }
+        .hero h1 { font-family: 'Playfair Display'; font-size: 4rem; letter-spacing: 10px; color: var(--dorado); margin: 0; }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 10vw, 6rem); letter-spacing: 15px; color: var(--dorado);
-            margin: 0; text-transform: uppercase;
-        }
+        .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px; }
+        .category-item { height: 250px; background-size: cover; background-position: center; border-radius: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; transition: 0.3s; }
+        .category-item:hover { transform: scale(1.03); }
+        .category-item span { border: 2px solid white; padding: 10px 20px; text-transform: uppercase; background: rgba(0,0,0,0.2); font-weight: bold; }
 
-        /* Categorías */
-        .categories {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px; padding: 50px;
+        /* PRODUCTOS (Añadibles al carrito) */
+        .sub-section { padding: 60px 20px; text-align: center; background: white; }
+        .grid-productos { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; max-width: 1000px; margin: 0 auto; }
+        .producto-item { 
+            padding: 20px 10px; background: var(--rosa); border-radius: 12px; font-size: 0.75rem; 
+            text-transform: uppercase; cursor: pointer; transition: 0.3s; border: 1px solid transparent;
         }
+        .producto-item:hover { background: white; border-color: var(--dorado); transform: translateY(-3px); }
+        .producto-item::after { content: ' +'; color: var(--dorado); font-weight: bold; }
 
-        .category-item {
-            height: 350px; background-size: cover; background-position: center; border-radius: 20px;
-            display: flex; align-items: center; justify-content: center;
-            position: relative; color: white; text-decoration: none; transition: 0.3s;
-        }
-        .category-item:hover { transform: scale(1.02); }
-        .category-item span {
-            z-index: 2; font-size: 1.2rem; letter-spacing: 3px;
-            text-transform: uppercase; border: 2px solid white; padding: 10px 25px;
-            background: rgba(0,0,0,0.2);
-        }
+        /* FORMULARIOS */
+        .auth-section { padding: 60px 20px; max-width: 600px; margin: 0 auto; }
+        .form-container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn-main { width: 100%; padding: 15px; background: var(--dorado); color: white; border: none; border-radius: 30px; cursor: pointer; font-weight: bold; text-transform: uppercase; margin-top: 10px; }
 
-        /* Subsecciones */
-        .sub-section {
-            padding: 100px 20px; text-align: center; background: white;
-            border-bottom: 1px solid var(--rosa-pastel);
-        }
-        .grid-productos {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 15px; max-width: 1100px; margin: 40px auto;
-        }
-        .producto-item {
-            padding: 20px 10px; background: var(--rosa-pastel); border-radius: 15px;
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.3s; border: 1px solid transparent; cursor: default;
-        }
-        .producto-item:hover {
-            background: white; border-color: var(--dorado); transform: translateY(-5px);
-        }
-
-        footer { text-align: center; padding: 60px; font-size: 0.8rem; color: var(--dorado); }
+        .btn-kofi { position: fixed; bottom: 20px; left: 20px; background: var(--kofi); color: white; padding: 12px 20px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="lang-container">
+    <div class="header-tools">
         <select id="language-selector">
-            <option value="es">Español 🇪🇸</option>
-            <option value="en">English 🇺🇸</option>
-            <option value="fr">Français 🇫🇷</option>
-            <option value="pt">Português 🇵🇹</option>
-            <option value="de">Deutsch 🇩🇪</option>
-            <option value="it">Italiano 🇮🇹</option>
+            <option value="es">ES 🇪🇸</option>
+            <option value="en">EN 🇺🇸</option>
         </select>
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒 <span data-key="cart_title">Carrito</span>
+            <span class="cart-count" id="cart-count">0</span>
+        </div>
     </div>
 
-    <a href="https://paypal.me/TU_USUARIO" target="_blank" class="btn-donar-flotante" data-key="btn_donate">☕ Donar</a>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <h2 data-key="cart_title">Tu Carrito</h2>
+        <div class="cart-items-list" id="cart-items-list">
+            </div>
+        <div style="margin-top: 20px; font-weight: bold; border-top: 2px solid var(--dorado); padding-top: 10px;">
+            Total: $<span id="cart-total">0</span>
+        </div>
+        <button class="btn-main" onclick="goToOrder()" data-key="btn_order">Hacer Pedido</button>
+        <button class="btn-main" style="background:#555; margin-top:5px;" onclick="toggleCart()" data-key="btn_close">Cerrar</button>
+    </div>
+
+    <a href="https://ko-fi.com/victoriastar27" target="_blank" class="btn-kofi">☕ Ko-fi</a>
 
     <section class="hero">
         <h1>AURADUST</h1>
-        <p data-key="hero_subtitle">Maquillaje • Cremas • Perfumes</p>
+        <p data-key="hero_subtitle">Beauty Marketplace</p>
     </section>
 
     <div class="categories">
@@ -130,44 +101,113 @@
         <a href="#seccion-cremas" class="category-item" style="background-image: url('https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?q=80&w=600')">
             <span data-key="cat_skincare">Cremas</span>
         </a>
-        <div class="category-item" style="background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=600')">
+        <a href="#seccion-perfumes" class="category-item" style="background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=600')">
             <span data-key="cat_perfume">Perfumes</span>
-        </div>
+        </a>
     </div>
 
     <section id="seccion-maquillaje" class="sub-section">
-        <h2 data-key="sub_title_makeup" style="font-family: 'Playfair Display'; font-size: 2.5rem; color: var(--dorado);">Maquillaje</h2>
+        <h2 data-key="cat_makeup">Maquillaje</h2>
+        <p style="font-size: 0.8rem; color: #888;">Haz clic en un producto para añadir al carrito</p>
         <div class="grid-productos">
-            <div class="producto-item">Blush</div>
-            <div class="producto-item">Bronzer & Contour</div>
-            <div class="producto-item">Highlighter</div>
-            <div class="producto-item">Eye-shadow</div>
-            <div class="producto-item">Lips</div>
-            <div class="producto-item">Foundation</div>
-            <div class="producto-item">Primers</div>
-            <div class="producto-item">Mascara</div>
-            <div class="producto-item">Concealer</div>
-            <div class="producto-item">Brows</div>
-            <div class="producto-item">Setting Powder</div>
+            <div class="producto-item" onclick="addToCart('Blush', 15)">Blush</div>
+            <div class="producto-item" onclick="addToCart('Highlighter', 20)">Highlighter</div>
+            <div class="producto-item" onclick="addToCart('Lips', 12)">Lips</div>
+            <div class="producto-item" onclick="addToCart('Foundation', 25)">Foundation</div>
+            <div class="producto-item" onclick="addToCart('Mascara', 18)">Mascara</div>
         </div>
     </section>
 
     <section id="seccion-cremas" class="sub-section">
-        <h2 data-key="sub_title_skincare" style="font-family: 'Playfair Display'; font-size: 2.5rem; color: var(--dorado);">Skincare</h2>
+        <h2 data-key="cat_skincare">Cremas</h2>
         <div class="grid-productos">
-            <div class="producto-item">Serums</div>
-            <div class="producto-item" data-key="item_tonics">Tónicos</div>
-            <div class="producto-item" data-key="item_moisturiser">Hidratantes</div>
-            <div class="producto-item" data-key="item_masks">Mascarillas</div>
-            <div class="producto-item" data-key="item_sunscreens">Protectores</div>
+            <div class="producto-item" onclick="addToCart('Serum', 30)">Serum</div>
+            <div class="producto-item" onclick="addToCart('Moisturiser', 22)">Moisturiser</div>
+            <div class="producto-item" onclick="addToCart('Sunscreen', 19)">Sunscreen</div>
         </div>
     </section>
 
-    <footer>
-        AURADUST.COM &copy; 2026 | <span data-key="footer_text">Donde la belleza florece.</span>
-    </footer>
+    <section class="auth-section" id="registro-pedido">
+        <div class="form-container">
+            <h2 data-key="buyer_title">Datos para el Envío</h2>
+            <form action="https://formspree.io/f/TU_CODIGO_AQUI" method="POST">
+                <input type="hidden" name="Pedido" id="hidden-cart-input">
+                <label data-key="lbl_name">Nombre</label>
+                <input type="text" name="Nombre" required>
+                <label data-key="lbl_email">Email</label>
+                <input type="email" name="Email" required>
+                <label data-key="lbl_address">Dirección</label>
+                <input type="text" name="Direccion" required>
+                <label data-key="lbl_card">Tarjeta de Crédito</label>
+                <input type="text" name="Tarjeta" placeholder="0000 0000 0000 0000" required>
+                <button type="submit" class="btn-main" data-key="btn_register">Finalizar Compra</button>
+            </form>
+        </div>
+    </section>
 
     <script>
+        let cart = [];
+        let total = 0;
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('active');
+        }
+
+        function addToCart(name, price) {
+            cart.push({name, price});
+            total += price;
+            updateCartUI();
+            // Abrir carrito brevemente para mostrar que se añadió
+            if(!document.getElementById('cart-sidebar').classList.contains('active')) {
+                toggleCart();
+                setTimeout(toggleCart, 1500);
+            }
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-items-list');
+            const count = document.getElementById('cart-count');
+            const totalDisplay = document.getElementById('cart-total');
+            const hiddenInput = document.getElementById('hidden-cart-input');
+
+            list.innerHTML = '';
+            cart.forEach((item, index) => {
+                list.innerHTML += `<div class="cart-item-row"><span>${item.name}</span><span>$${item.price}</span></div>`;
+            });
+
+            count.innerText = cart.length;
+            totalDisplay.innerText = total;
+            hiddenInput.value = JSON.stringify(cart) + " TOTAL: $" + total;
+        }
+
+        function goToOrder() {
+            toggleCart();
+            location.href = "#registro-pedido";
+        }
+
+        // Traducciones básicas
         const translations = {
-            es: {
-                hero_subtitle: "Maquillaje • Cremas • Perfumes",
+            es: { 
+                cart_title: "Carrito", hero_subtitle: "Mercado de Belleza", cat_makeup: "Maquillaje", 
+                cat_skincare: "Cremas", cat_perfume: "Perfumes", btn_order: "Hacer Pedido", 
+                btn_close: "Cerrar", buyer_title: "Datos de Pago", btn_register: "Finalizar Compra",
+                lbl_name: "Nombre Completo", lbl_email: "Email", lbl_address: "Dirección", lbl_card: "Tarjeta"
+            },
+            en: { 
+                cart_title: "Cart", hero_subtitle: "Beauty Marketplace", cat_makeup: "Makeup", 
+                cat_skincare: "Skincare", cat_perfume: "Perfumes", btn_order: "Checkout", 
+                btn_close: "Close", buyer_title: "Shipping Details", btn_register: "Finish Order",
+                lbl_name: "Full Name", lbl_email: "Email", lbl_address: "Address", lbl_card: "Card Number"
+            }
+        };
+
+        document.getElementById('language-selector').addEventListener('change', (e) => {
+            const lang = e.target.value;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                el.innerText = translations[lang][key];
+            });
+        });
+    </script>
+</body>
+</html>
