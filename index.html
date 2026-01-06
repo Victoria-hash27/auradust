@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+           <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -17,246 +18,286 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background-color: var(--beige-acogedor);
             color: var(--texto);
             scroll-behavior: smooth;
         }
 
-        /* --- PORTADA (HERO) --- */
+        /* Selector de Idiomas Flotante */
+        .lang-container {
+            position: fixed;
+            top: 20px; right: 20px;
+            z-index: 1000;
+        }
+        #language-selector {
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: 1px solid var(--dorado);
+            background: white;
+            font-family: 'Montserrat';
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            outline: none;
+        }
+
+        /* Hero Section */
         .hero {
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center;
             background: linear-gradient(rgba(253, 240, 240, 0.6), rgba(249, 245, 240, 0.6)), 
                         url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2000');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        /* Purpurina animada */
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.4;
-            pointer-events: none;
+            background-size: cover; background-position: center;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 6rem;
-            font-weight: 400;
-            letter-spacing: 15px;
-            margin: 0;
-            color: var(--dorado);
-            text-transform: uppercase;
-            animation: fadeIn 2s ease-in;
+            font-size: clamp(3rem, 10vw, 6rem); letter-spacing: 15px; color: var(--dorado);
+            margin: 0; text-transform: uppercase;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-top: 10px;
-            font-weight: 300;
-        }
-
-        /* --- FORMULARIO INTERMEDIO (ROSA Y BEIGE) --- */
-        .form-section {
-            padding: 100px 20px;
-            background-color: white;
-            display: flex;
-            justify-content: center;
-        }
-
-        .seller-form {
-            background: linear-gradient(135deg, var(--rosa-pastel) 0%, var(--beige-acogedor) 100%);
-            padding: 60px;
-            border-radius: 40px;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            border: 1px solid white;
-            text-align: center;
-        }
-
-        .seller-form h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--dorado);
-            margin-bottom: 10px;
-        }
-
-        .form-group {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-left: 5px;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 15px;
-            background: white;
-            font-family: 'Montserrat', sans-serif;
-            box-sizing: border-box;
-        }
-
-        .btn-enviar {
-            background-color: var(--dorado);
-            color: white;
-            padding: 18px 40px;
-            border: none;
-            border-radius: 40px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 20px;
-        }
-
-        .btn-enviar:hover {
-            letter-spacing: 5px;
-            background-color: #b08d48;
-        }
-
-        /* --- CATEGORÍAS --- */
+        /* Categorías Principales */
         .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 50px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px; padding: 50px;
         }
 
         .category-item {
-            height: 300px;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 20px;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-item span {
-            position: relative;
-            z-index: 2;
-            color: white;
-            font-size: 1.5rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            border: 1px solid white;
-            padding: 10px 20px;
-        }
-
-        .category-item::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.2);
+            height: 350px; background-size: cover; background-position: center; border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; color: white; text-decoration: none; overflow: hidden;
             transition: 0.3s;
         }
 
-        .category-item:hover::before {
-            background: rgba(248, 187, 208, 0.4);
+        .category-item:hover { transform: scale(1.02); }
+
+        .category-item span {
+            z-index: 2; font-size: 1.2rem; letter-spacing: 3px;
+            text-transform: uppercase; border: 2px solid white; padding: 10px 25px;
+            background: rgba(0,0,0,0.1);
         }
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            color: var(--dorado);
+        /* Subcategorías de Maquillaje */
+        .sub-section {
+            padding: 80px 20px; text-align: center; background: white;
+        }
+        .grid-productos {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px; max-width: 1100px; margin: 40px auto;
+        }
+        .producto-item {
+            padding: 20px 10px; background: var(--rosa-pastel); border-radius: 15px;
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s; border: 1px solid transparent; cursor: pointer;
+        }
+        .producto-item:hover {
+            background: white; border-color: var(--dorado); transform: translateY(-5px);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Formulario */
+        .form-section { padding: 100px 20px; display: flex; justify-content: center; }
+        .seller-form {
+            background: linear-gradient(135deg, var(--rosa-pastel), var(--beige-acogedor));
+            padding: 50px; border-radius: 40px; max-width: 500px; width: 100%; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .form-group { text-align: left; margin-bottom: 20px; }
+        .form-group label { font-size: 0.7rem; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 15px; border-radius: 12px; border: 1px solid white; box-sizing: border-box;
         }
 
+        .btn-enviar {
+            background-color: var(--dorado); color: white;
+            padding: 18px 45px; border: none; border-radius: 40px;
+            text-transform: uppercase; letter-spacing: 3px; font-weight: bold;
+            cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-block;
+        }
+        .btn-enviar:hover { background-color: #b08d48; letter-spacing: 4px; }
+
+        footer { text-align: center; padding: 60px; font-size: 0.8rem; color: var(--dorado); border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
 
+    <div class="lang-container">
+        <select id="language-selector">
+            <option value="es">Español 🇪🇸</option>
+            <option value="en">English 🇺🇸</option>
+            <option value="fr">Français 🇫🇷</option>
+            <option value="pt">Português 🇵🇹</option>
+            <option value="de">Deutsch 🇩🇪</option>
+            <option value="it">Italiano 🇮🇹</option>
+        </select>
+    </div>
+
     <section class="hero">
         <h1>AURADUST</h1>
-        <p>Maquillaje • Cremas • Perfumes</p>
-        <a href="#unete" class="btn-enviar" style="text-decoration: none; margin-top: 40px;">Sé parte del Aura</a>
+        <p data-key="hero_subtitle">Maquillaje • Cremas • Perfumes</p>
+        <a href="#unete" data-key="btn_join" class="btn-enviar" style="margin-top: 30px;">Sé parte del Aura</a>
     </section>
 
     <div class="categories">
-        <div class="category-item" style="background-image: url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600')"><span>Maquillaje</span></div>
-        <div class="category-item" style="background-image: url('https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?q=80&w=600')"><span>Cremas</span></div>
-        <div class="category-item" style="background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=600')"><span>Perfumes</span></div>
+        <a href="#maquillaje-section" class="category-item" style="background-image: url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600')">
+            <span data-key="cat_makeup">Maquillaje</span>
+        </a>
+        <div class="category-item" style="background-image: url('https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?q=80&w=600')">
+            <span data-key="cat_skincare">Cremas</span>
+        </div>
+        <div class="category-item" style="background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=600')">
+            <span data-key="cat_perfume">Perfumes</span>
+        </div>
     </div>
+
+    <section id="maquillaje-section" class="sub-section">
+        <h2 data-key="sub_title" style="font-family: 'Playfair Display'; font-size: 2.5rem; color: var(--dorado);">Maquillaje</h2>
+        <div class="grid-productos">
+            <div class="producto-item">Blush</div>
+            <div class="producto-item">Bronzer & Contour</div>
+            <div class="producto-item">Highlighter</div>
+            <div class="producto-item">Eye-shadow</div>
+            <div class="producto-item">Lips</div>
+            <div class="producto-item">Foundation</div>
+            <div class="producto-item">Primers</div>
+            <div class="producto-item">Mascara & Eyelashes</div>
+            <div class="producto-item">Concealer</div>
+            <div class="producto-item">Brows</div>
+            <div class="producto-item">Setting Powder</div>
+        </div>
+    </section>
 
     <section class="form-section" id="unete">
         <div class="seller-form">
-            <h2>Únete a Auradust</h2>
-            <p style="margin-bottom: 30px; font-weight: 300;">¿Tienes una marca de belleza? Vende con nosotros.</p>
+            <h2 data-key="form_title">Únete a Auradust</h2>
+            <p data-key="form_desc" style="margin-bottom: 30px;">¿Tienes una marca de belleza? Vende con nosotros.</p>
             
-            <form>
+            <form action="https://formspree.io/f/TU_CODIGO_AQUI" method="POST">
                 <div class="form-group">
-                    <label>Nombre de la marca</label>
-                    <input type="text" placeholder="Ej. Bloom Beauty">
+                    <label data-key="label_brand">Nombre de la marca</label>
+                    <input type="text" name="brand" required>
                 </div>
                 <div class="form-group">
-                    <label>Categoría Principal</label>
-                    <select>
-                        <option>Maquillaje</option>
-                        <option>Cremas / Skincare</option>
-                        <option>Perfumería</option>
-                    </select>
+                    <label data-key="label_email">Email de contacto</label>
+                    <input type="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label>Email de contacto</label>
-                    <input type="email" placeholder="hola@tuweb.com">
+                    <label data-key="label_msg">Mensaje</label>
+                    <textarea name="message" rows="3"></textarea>
                 </div>
-                <div class="form-group">
-                    <label>Breve descripción</label>
-                    <textarea rows="3" placeholder="Cuéntanos sobre tu magia..."></textarea>
-                </div>
-                <button type="submit" class="btn-enviar">Enviar Solicitud</button>
+                <button type="submit" class="btn-enviar" data-key="btn_send">Enviar Solicitud</button>
             </form>
         </div>
     </section>
 
     <footer>
-        AURADUST.COM &copy; 2026<br>
-        Donde la belleza florece y brilla.
+        AURADUST.COM &copy; 2026 | <span data-key="footer_text">Donde la belleza florece y brilla.</span>
     </footer>
-<div style="text-align: center; margin-top: 50px;">
-    
-    <a href="mailto:tu-correo@ejemplo.com" class="boton-auradust contacto">
-        📧 Contactar conmigo
-    </a>
 
-    <a href="https://ko-fi.com/tu-usuario" target="_blank" class="boton-auradust donar">
-        ☕ Invítame a un café
-    </a>
+    <script>
+        const translations = {
+            es: {
+                hero_subtitle: "Maquillaje • Cremas • Perfumes",
+                btn_join: "Sé parte del Aura",
+                cat_makeup: "Maquillaje",
+                cat_skincare: "Cremas",
+                cat_perfume: "Perfumes",
+                sub_title: "Colección de Maquillaje",
+                form_title: "Únete a Auradust",
+                form_desc: "¿Tienes una marca de belleza? Vende con nosotros.",
+                label_brand: "Nombre de la marca",
+                label_email: "Email de contacto",
+                label_msg: "Mensaje",
+                btn_send: "Enviar Solicitud",
+                footer_text: "Donde la belleza florece y brilla."
+            },
+            en: {
+                hero_subtitle: "Makeup • Creams • Perfumes",
+                btn_join: "Join the Aura",
+                cat_makeup: "Makeup",
+                cat_skincare: "Skincare",
+                cat_perfume: "Perfumes",
+                sub_title: "Makeup Collection",
+                form_title: "Join Auradust",
+                form_desc: "Do you have a beauty brand? Sell with us.",
+                label_brand: "Brand Name",
+                label_email: "Contact Email",
+                label_msg: "Message",
+                btn_send: "Send Request",
+                footer_text: "Where beauty blooms and shines."
+            },
+            fr: {
+                hero_subtitle: "Maquillage • Crèmes • Parfums",
+                btn_join: "Rejoignez l'Aura",
+                cat_makeup: "Maquillage",
+                cat_skincare: "Soins de la peau",
+                cat_perfume: "Parfums",
+                sub_title: "Collection de Maquillage",
+                form_title: "Rejoignez Auradust",
+                form_desc: "Vous avez une marque de beauté ? Vendez avec nous.",
+                label_brand: "Nom de la marque",
+                label_email: "Email de contact",
+                label_msg: "Message",
+                btn_send: "Envoyer la demande",
+                footer_text: "Où la beauté s'épanouit."
+            },
+            pt: {
+                hero_subtitle: "Maquilhagem • Cremes • Perfumes",
+                btn_join: "Junte-se à Aura",
+                cat_makeup: "Maquilhagem",
+                cat_skincare: "Cuidados da pele",
+                cat_perfume: "Perfumes",
+                sub_title: "Coleção de Maquilhagem",
+                form_title: "Junte-se à Auradust",
+                form_desc: "Tem uma marca de beleza? Venda connosco.",
+                label_brand: "Nome da marca",
+                label_email: "Email de contacto",
+                label_msg: "Mensagem",
+                btn_send: "Enviar Pedido",
+                footer_text: "Onde a beleza floresce."
+            },
+            de: {
+                hero_subtitle: "Make-up • Cremes • Parfüms",
+                btn_join: "Werden Sie Teil der Aura",
+                cat_makeup: "Make-up",
+                cat_skincare: "Hautpflege",
+                cat_perfume: "Parfüms",
+                sub_title: "Make-up Kollektion",
+                form_title: "Auradust beitreten",
+                form_desc: "Haben Sie eine Beauty-Marke? Verkaufen Sie mit uns.",
+                label_brand: "Markenname",
+                label_email: "Kontakt-E-Mail",
+                label_msg: "Nachricht",
+                btn_send: "Anfrage senden",
+                footer_text: "Wo Schönheit erblüht."
+            },
+            it: {
+                hero_subtitle: "Trucco • Creme • Profumi",
+                btn_join: "Unisciti all'Aura",
+                cat_makeup: "Trucco",
+                cat_skincare: "Cura della pelle",
+                cat_perfume: "Profumi",
+                sub_title: "Collezione Trucco",
+                form_title: "Unisciti a Auradust",
+                form_desc: "Hai un marchio di bellezza? Vendi con noi.",
+                label_brand: "Nome del marchio",
+                label_email: "Email di contatto",
+                label_msg: "Messaggio",
+                btn_send: "Invia Richiesta",
+                footer_text: "Dove la bellezza fiorisce."
+            }
+        };
 
-</div>
+        const selector = document.getElementById('language-selector');
+        selector.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if(translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+        });
+    </script>
 </body>
-
 </html>
-
