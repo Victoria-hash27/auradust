@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURADUST | Beauty Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --rosa-pastel: #fdf0f0;
+            --rosa-fuerte: #f8bbd0;
+            --beige-acogedor: #f9f5f0;
+            --dorado: #c5a059;
+            --texto: #5a4a42;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--beige-acogedor);
+            color: var(--texto);
+            scroll-behavior: smooth;
+        }
+
+        /* --- PORTADA (HERO) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(253, 240, 240, 0.6), rgba(249, 245, 240, 0.6)), 
+                        url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Purpurina animada */
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            font-weight: 400;
+            letter-spacing: 15px;
+            margin: 0;
+            color: var(--dorado);
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        /* --- FORMULARIO INTERMEDIO (ROSA Y BEIGE) --- */
+        .form-section {
+            padding: 100px 20px;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+        }
+
+        .seller-form {
+            background: linear-gradient(135deg, var(--rosa-pastel) 0%, var(--beige-acogedor) 100%);
+            padding: 60px;
+            border-radius: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border: 1px solid white;
+            text-align: center;
+        }
+
+        .seller-form h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dorado);
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 5px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            background: white;
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .btn-enviar {
+            background-color: var(--dorado);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-enviar:hover {
+            letter-spacing: 5px;
+            background-color: #b08d48;
+        }
+
+        /* --- CATEGORÍAS --- */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 50px;
+        }
+
+        .category-item {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-item span {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: 1px solid white;
+            padding: 10px 20px;
+        }
+
+        .category-item::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .category-item:hover::before {
+            background: rgba(248, 187, 208, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--dorado);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>AURADUST</h1>
+        <p>Maquillaje • Cremas • Perfumes</p>
+        <a href="#unete" class="btn-enviar" style="text-decoration: none; margin-top: 40px;">Sé parte del Aura</a>
+    </section>
+
+    <div class="categories">
+        <div class="category-item" style="background-image: url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600')"><span>Maquillaje</span></div>
+        <div class="category-item" style="background-image: url('https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?q=80&w=600')"><span>Cremas</span></div>
+        <div class="category-item" style="background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=600')"><span>Perfumes</span></div>
+    </div>
+
+    <section class="form-section" id="unete">
+        <div class="seller-form">
+            <h2>Únete a Auradust</h2>
+            <p style="margin-bottom: 30px; font-weight: 300;">¿Tienes una marca de belleza? Vende con nosotros.</p>
+            
+            <form>
+                <div class="form-group">
+                    <label>Nombre de la marca</label>
+                    <input type="text" placeholder="Ej. Bloom Beauty">
+                </div>
+                <div class="form-group">
+                    <label>Categoría Principal</label>
+                    <select>
+                        <option>Maquillaje</option>
+                        <option>Cremas / Skincare</option>
+                        <option>Perfumería</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Email de contacto</label>
+                    <input type="email" placeholder="hola@tuweb.com">
+                </div>
+                <div class="form-group">
+                    <label>Breve descripción</label>
+                    <textarea rows="3" placeholder="Cuéntanos sobre tu magia..."></textarea>
+                </div>
+                <button type="submit" class="btn-enviar">Enviar Solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        AURADUST.COM &copy; 2026<br>
+        Donde la belleza florece y brilla.
+    </footer>
+
+</body>
+</html>
