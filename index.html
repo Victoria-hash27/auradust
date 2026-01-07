@@ -13,9 +13,9 @@
 
         body { font-family: 'Montserrat', sans-serif; margin: 0; background: var(--beige); color: var(--texto); scroll-behavior: smooth; overflow-x: hidden; }
 
-        /* HEADER Y CARRITO */
+        /* HEADER Y TOOLS */
         .header-tools { position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px; }
-        #language-selector { padding: 8px; border-radius: 20px; border: 1px solid var(--dorado); background: white; cursor: pointer; }
+        #language-selector { padding: 8px; border-radius: 20px; border: 1px solid var(--dorado); background: white; cursor: pointer; font-family: 'Montserrat'; }
         
         .cart-icon {
             background: white; border: 1px solid var(--dorado); padding: 10px 15px; border-radius: 25px;
@@ -23,7 +23,7 @@
         }
         .cart-count { background: var(--dorado); color: white; border-radius: 50%; padding: 2px 7px; font-size: 0.7rem; position: absolute; top: -5px; right: -5px; }
 
-        /* SIDEBAR CARRITO */
+        /* CARRITO SIDEBAR */
         .cart-sidebar {
             position: fixed; top: 0; right: -100%; width: 350px; height: 100%;
             background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 2000;
@@ -37,22 +37,19 @@
         .hero { height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(253,240,240,0.4), rgba(249,245,240,0.4)), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2000'); background-size: cover; background-position: center; }
         .hero h1 { font-family: 'Playfair Display'; font-size: clamp(3rem, 8vw, 5rem); letter-spacing: 12px; color: var(--dorado); margin: 0; }
 
-        /* CATEGORIAS PRINCIPALES */
+        /* CATEGORIAS */
         .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px; }
         .category-item { height: 200px; background-size: cover; background-position: center; border-radius: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; transition: 0.3s; }
         .category-item:hover { transform: scale(1.03); }
         .category-item span { border: 1px solid white; padding: 10px 20px; text-transform: uppercase; background: rgba(0,0,0,0.3); font-weight: bold; letter-spacing: 2px; }
 
-        /* SECCIONES DE PRODUCTOS */
-        .sub-section { padding: 60px 20px; text-align: center; border-bottom: 1px solid var(--rosa); background: white; }
+        /* SECCIONES PRODUCTOS */
+        .sub-section { padding: 80px 20px; text-align: center; border-bottom: 1px solid var(--rosa); background: white; }
         .grid-productos { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; max-width: 1100px; margin: 30px auto; }
-        .producto-item { 
-            padding: 20px 10px; background: var(--rosa); border-radius: 12px; font-size: 0.75rem; 
-            text-transform: uppercase; cursor: pointer; transition: 0.3s; border: 1px solid transparent;
-        }
+        .producto-item { padding: 20px 10px; background: var(--rosa); border-radius: 12px; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; transition: 0.3s; border: 1px solid transparent; }
         .producto-item:hover { background: white; border-color: var(--dorado); transform: translateY(-3px); }
 
-        /* FORMULARIOS REGISTRO */
+        /* FORMULARIOS */
         .auth-section { padding: 80px 20px; max-width: 800px; margin: 0 auto; }
         .auth-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
         .tab-btn { padding: 12px 25px; border: 2px solid var(--dorado); background: none; color: var(--dorado); border-radius: 25px; cursor: pointer; font-weight: bold; }
@@ -72,6 +69,10 @@
         <select id="language-selector">
             <option value="es">ES 🇪🇸</option>
             <option value="en">EN 🇺🇸</option>
+            <option value="fr">FR 🇫🇷</option>
+            <option value="pt">PT 🇵🇹</option>
+            <option value="de">DE 🇩🇪</option>
+            <option value="it">IT 🇮🇹</option>
         </select>
         <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
     </div>
@@ -83,7 +84,7 @@
             Total: $<span id="cart-total">0</span>
         </div>
         <button class="btn-main" onclick="goToOrder()" data-key="btn_order">Completar Pedido</button>
-        <button class="btn-main" style="background:#888" onclick="toggleCart()">Cerrar</button>
+        <button class="btn-main" style="background:#888" onclick="toggleCart()" data-key="btn_close">Cerrar</button>
     </div>
 
     <a href="https://ko-fi.com/victoriastar27" target="_blank" class="btn-kofi">☕ Ko-fi</a>
@@ -130,9 +131,9 @@
     <section id="seccion-perfumes" class="sub-section">
         <h2 data-key="cat_perfume">Perfumes</h2>
         <div class="grid-productos">
-            <div class="producto-item" onclick="addToCart('Perfume Hombre', 50)">Perfume para Hombre</div>
-            <div class="producto-item" onclick="addToCart('Perfume Mujer', 55)">Perfume para Mujer</div>
-            <div class="producto-item" onclick="addToCart('Perfume Niños', 30)">Perfume para Niños</div>
+            <div class="producto-item" onclick="addToCart('Perfume Hombre', 50)" data-key="perf_men">Perfume para Hombre</div>
+            <div class="producto-item" onclick="addToCart('Perfume Mujer', 55)" data-key="perf_women">Perfume para Mujer</div>
+            <div class="producto-item" onclick="addToCart('Perfume Niños', 30)" data-key="perf_kids">Perfume para Niños</div>
         </div>
     </section>
 
@@ -150,7 +151,7 @@
                 <input type="tel" name="Telefono" placeholder="Teléfono" required>
                 <input type="email" name="Email" placeholder="Email" required>
                 <input type="text" name="Direccion" placeholder="Dirección de Envío" required>
-                <input type="text" name="Tarjeta" placeholder="Número de Tarjeta 0000 0000..." required>
+                <input type="text" name="Tarjeta" placeholder="Número de Tarjeta" required>
                 <button type="submit" class="btn-main" data-key="btn_register">Registrarse y Pagar</button>
             </form>
         </div>
@@ -178,27 +179,28 @@
         }
         function addToCart(name, price) {
             cart.push({name, price}); total += price;
-            const list = document.getElementById('cart-items-list');
-            list.innerHTML += `<div class="cart-item-row"><span>${name}</span><span>$${price}</span></div>`;
+            document.getElementById('cart-items-list').innerHTML += `<div class="cart-item-row"><span>${name}</span><span>$${price}</span></div>`;
             document.getElementById('cart-count').innerText = cart.length;
             document.getElementById('cart-total').innerText = total;
             document.getElementById('cart-data-input').value = JSON.stringify(cart) + " TOTAL: $" + total;
-            if(!document.getElementById('cart-sidebar').classList.contains('active')) {
-                toggleCart(); setTimeout(toggleCart, 1000);
-            }
+            toggleCart(); setTimeout(toggleCart, 1000);
         }
         function goToOrder() { toggleCart(); location.href = "#registro"; }
 
         const translations = {
-            es: { hero_subtitle: "Mercado de Belleza Premium", cart_title: "Tu Carrito", cat_makeup: "Maquillaje", cat_skincare: "Cremas", cat_perfume: "Perfumes", tab_buyer: "Comprador", tab_seller: "Vendedor", buyer_title: "Cuenta de Comprador", seller_title: "Registro Vendedor", btn_order: "Completar Pedido", btn_register: "Registrarse y Pagar", btn_send: "Enviar Solicitud", footer_text: "Donde la belleza florece." },
-            en: { hero_subtitle: "Premium Beauty Marketplace", cart_title: "Your Cart", cat_makeup: "Makeup", cat_skincare: "Skincare", cat_perfume: "Perfumes", tab_buyer: "Buyer", tab_seller: "Seller", buyer_title: "Buyer Account", seller_title: "Seller Registration", btn_order: "Complete Order", btn_register: "Register and Pay", btn_send: "Send Request", footer_text: "Where beauty blooms." }
+            es: { hero_subtitle: "Mercado de Belleza Premium", cart_title: "Tu Carrito", cat_makeup: "Maquillaje", cat_skincare: "Cremas", cat_perfume: "Perfumes", perf_men: "Perfume Hombre", perf_women: "Perfume Mujer", perf_kids: "Perfume Niños", tab_buyer: "Comprador", tab_seller: "Vendedor", buyer_title: "Cuenta de Comprador", seller_title: "Registro Vendedor", btn_order: "Completar Pedido", btn_close: "Cerrar", btn_register: "Registrarse y Pagar", btn_send: "Enviar Solicitud", footer_text: "Donde la belleza florece." },
+            en: { hero_subtitle: "Premium Beauty Marketplace", cart_title: "Your Cart", cat_makeup: "Makeup", cat_skincare: "Skincare", cat_perfume: "Perfumes", perf_men: "Men's Perfume", perf_women: "Women's Perfume", perf_kids: "Kids' Perfume", tab_buyer: "Buyer", tab_seller: "Seller", buyer_title: "Buyer Account", seller_title: "Seller Registration", btn_order: "Complete Order", btn_close: "Close", btn_register: "Register and Pay", btn_send: "Send Request", footer_text: "Where beauty blooms." },
+            fr: { hero_subtitle: "Marché de la beauté Premium", cart_title: "Votre Panier", cat_makeup: "Maquillage", cat_skincare: "Crèmes", cat_perfume: "Parfums", perf_men: "Parfum Homme", perf_women: "Parfum Femme", perf_kids: "Parfum Enfant", tab_buyer: "Acheteur", tab_seller: "Vendeur", buyer_title: "Compte Acheteur", seller_title: "Inscription Vendeur", btn_order: "Commander", btn_close: "Fermer", btn_register: "S'inscrire et Payer", btn_send: "Envoyer", footer_text: "Où la beauté s'épanouit." },
+            pt: { hero_subtitle: "Mercado de Beleza Premium", cart_title: "Seu Carrinho", cat_makeup: "Maquilhagem", cat_skincare: "Cremes", cat_perfume: "Perfumes", perf_men: "Perfume Homem", perf_women: "Perfume Mulher", perf_kids: "Perfume Criança", tab_buyer: "Comprador", tab_seller: "Vendedor", buyer_title: "Conta Comprador", seller_title: "Registro Vendedor", btn_order: "Concluir Pedido", btn_close: "Fechar", btn_register: "Registrar e Pagar", btn_send: "Enviar", footer_text: "Onde a beleza floresce." },
+            de: { hero_subtitle: "Premium Beauty Marktplatz", cart_title: "Warenkorb", cat_makeup: "Make-up", cat_skincare: "Cremes", cat_perfume: "Parfums", perf_men: "Herrenparfüm", perf_women: "Damenparfüm", perf_kids: "Kinderparfüm", tab_buyer: "Käufer", tab_seller: "Verkäufer", buyer_title: "Käuferkonto", seller_title: "Verkäuferanmeldung", btn_order: "Bestellen", btn_close: "Schließen", btn_register: "Registrieren und Bezahlen", btn_send: "Senden", footer_text: "Wo Schönheit erblüht." },
+            it: { hero_subtitle: "Mercato della Bellezza Premium", cart_title: "Carrello", cat_makeup: "Trucco", cat_skincare: "Creme", cat_perfume: "Profumi", perf_men: "Profumo Uomo", perf_women: "Profumo Donna", perf_kids: "Profumo Bambini", tab_buyer: "Acquirente", tab_seller: "Venditore", buyer_title: "Conto Acquirente", seller_title: "Registrazione Venditore", btn_order: "Ordina", btn_close: "Chiudi", btn_register: "Registrati e Paga", btn_send: "Invia", footer_text: "Dove la bellezza fiorisce." }
         };
 
         document.getElementById('language-selector').addEventListener('change', (e) => {
             const lang = e.target.value;
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
-                el.innerText = translations[lang][key];
+                if(translations[lang][key]) el.innerText = translations[lang][key];
             });
         });
     </script>
